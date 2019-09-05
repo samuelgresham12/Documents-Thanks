@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src='script.js'></script>
+    <script
+  src="https://code.jquery.com/jquery-3.4.1.js"
+  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+  crossorigin="anonymous"></script>
+    <link rel = "stylesheet" type = "text/css" href = "style.css"/>
+ </head>
+    <title>Documents, Thanks</title>
+</head>
+<body>
+        <div id='bannertop'>
+            
+            <div class='row'>
+
+                <div class='col-sm' id='contentstart'>
+                    <button id='start' onclick='startGame()'>Start Game</button>
+                </div>
+
+                <div class='col-sm' id='contentstop' style='display:none;'>
+                    <button id='stop'>Finish Game</button>
+                </div>
+                
+                <div class='col-sm' id='content'>
+                    <b>Name: </b><p id='username' style='display:inline;'>USERNAME</p>
+                </div>
+                
+                <div class='col-sm' id='content'>
+                        <b>High Score: </b><p id='highscore' style='display:inline;'>HIGH SCORE</p>
+                </div>
+
+                <div class='col-sm' id='content'>
+                        <b>Current Score: </b><p id='highscore' style='display:inline;'>CURRENT SCORE</p>
+                </div>
+
+            </div>
+        </div>
+
+
+
+        <div id='gamearea-top' class='row'>
+            <div id='gamearea-top-left' class='col-sm'>
+
+            </div>
+            <div id='gamearea-top-right' class='col-sm'>
+                <h3>Police Check</h3>
+                <b>Wanted? </b><p id='highscore' style='display:inline;'>YES/NO</p> <br>
+                <b>Permission to Enter? </b><p id='highscore' style='display:inline;'>YES/NO</p><br><br>
+                
+                <div class='row'>
+                    <div class='col-sm'>
+                        <button id='enter'>Grant Entry</button>
+                    </div>
+                    <div class='col-sm'>
+                            <button id='deny'>Deny Entry</button>
+                    </div>
+                </div> <br>
+                <img src='assets/border-force-logo.png' style='height: 12vh'>
+            </div>
+        </div>
+
+        <div id='gamearea-bottom' class='row'>
+            <div id='gamearea-bottom-left' class='col-sm'>
+                <h3> Passport:</h3>
+                <div class='row'>
+                <div class='col-sm'>
+                <b>First Name: </b> <br>
+                <b>Middle Name(s): </b> <br>
+                <b>Last Name: </b> <br> <br>
+
+                <b>Nationality: </b><br>
+                <b>Country of Residence:</b> <br> 
+
+                <b>Passport Number: </b> <br> <br>
+                <b>Image:</b>
+
+                </div>
+                <div class='col-sm'>
+                        <p id='firstname-passport' style='display:inline;'>FIRSTNAME</p><br>
+                        <p id='middlename-passport' style='display:inline;'>MIDDLENAME</p><br>
+                        <p id='lastname-passport' style='display:inline;'>LASTNAME</p><br> <br>
+
+                        <p id='nationality-passport' style='display:inline;'>NATIONALITY</p><br> 
+                        <p id='residence-passport' style='display:inline;'>COUNTRY OF RESIDENCE</p><br> 
+
+                        <p id='number-passport' style='display:inline;'>PASSPORT NUMBER</p><br> <br>
+                        <img src='assets/blank-person.png' style='height:7vw; border:1px solid black;'>
+                </div>
+                </div>
+            </div>
+
+            <div id='gamearea-bottom-center' class='col-sm'>
+                <h3> Visa:</h3>
+                <div class='row'>
+                <div class='col-sm'>
+                    <b>First Name: </b> <br>
+                    <b>Middle Name(s): </b> <br>
+                    <b>Last Name: </b> <br> <br>
+        
+                    <b>Issued In: </b><br>
+                    <b>Valid Until:</b> <br> 
+        
+                    <b>For Passport Number: </b> <br> <br>
+                    <b>Image:</b>
+        
+                    </div>
+                    <div class='col-sm'>
+                        <p id='firstname-visa' style='display:inline;'>FIRSTNAME</p><br>
+                        <p id='middlename-visa' style='display:inline;'>MIDDLENAME</p><br>
+                        <p id='lastname-visa' style='display:inline;'>LASTNAME</p><br> <br>
+        
+                        <p id='nationality-visa' style='display:inline;'>ISSUE COUNTRY</p><br> 
+                        <p id='valid-visa' style='display:inline;'>VALID UNTIL</p><br> 
+        
+                        <p id='passportnumber-visa' style='display:inline;'>PASSPORT NUMBER</p><br> <br>
+                        <img src='assets/blank-person.png' style='height:7vw; border:1px solid black;'>
+                </div>
+                </div>
+            </div>
+
+            <div id='gamearea-bottom-right' class='col-sm'>
+                <h3> Citizen ID:</h3>
+                <div class='row'>
+                    <div class='col-sm'>
+                        <b>First Name: </b> <br>
+                        <b>Middle Name(s): </b> <br>
+                        <b>Last Name: </b> <br> <br>
+                
+                        <b>Expires On:</b> <br> <br> 
+
+                        <b>Image:</b> <br>
+                
+                        </div>
+                    <div class='col-sm'>
+                        <p id='firstname-id' style='display:inline;'>FIRSTNAME</p><br>
+                        <p id='middlename-id' style='display:inline;'>MIDDLENAME</p><br>
+                        <p id='lastname-id' style='display:inline;'>LASTNAME</p><br> <br>
+                
+                        <p id='expiry-id' style='display:inline;'>EXPIRATION</p><br> <br>
+                
+                        <img src='assets/blank-person.png' style='height:7vw; border:1px solid black;'>
+                </div>
+                </div>
+            </div>
+        </div>
+
+
+</body>
+</html>
