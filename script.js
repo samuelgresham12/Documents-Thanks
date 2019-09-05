@@ -63,19 +63,12 @@ function makeCountry() {
 }
 
 function startGame() {
+    cleanseFields()
+    sessionStorage.setItem("a",false);
     $("#contentstart").hide();
     $("#contentstop").fadeIn();
     document.getElementById("gamearea-bottom-center").style = "background-color:none;"
     document.getElementById("gamearea-bottom-right").style = "background-color:none;"
-
-    let resident = makeResidencyStatus();
-
-    if(resident == true){
-        document.getElementById("gamearea-bottom-center").style = "background-color:darkgrey;"
-    }
-    else {
-        document.getElementById("gamearea-bottom-right").style = "background-color:darkgrey;"
-    }
 
     let passnum = makePassportNumber()
     document.getElementById("number-passport").innerHTML = passnum;
@@ -94,4 +87,94 @@ function startGame() {
 
     let country = makeCountry();
     document.getElementById("residence-passport").innerHTML = country;
+
+
+    let resident = makeResidencyStatus();
+
+    if(resident == true){
+        document.getElementById("gamearea-bottom-center").style = "background-color:darkgrey;"
+        if(Math.random()>0.5){
+            makeMistake(true);
+        }
+    }
+    else if (resident == false){
+        document.getElementById("gamearea-bottom-right").style = "background-color:darkgrey;"
+        if(Math.random()>0.5){
+            makeMistake(false);
+        }
+    }
+}
+
+function makeMistake(isResident){
+    if (isResident == true) {
+        let rand = Math.random()
+        if(rand<0.2){
+            let first = makeFirstName()
+            document.getElementById("firstname-id").innerHTML = first;
+            sessionStorage.setItem("a",true);
+            document.getElementById("middlename-id").innerHTML = document.getElementById("middlename-passport").innerHTML;
+            document.getElementById("lastname-id").innerHTML = document.getElementById("lastname-passport").innerHTML;
+        }
+        else if(rand<0.4){
+            let middle = makeMiddleName()
+            document.getElementById("middlename-id").innerHTML = middle;
+            sessionStorage.setItem("a",true);
+            document.getElementById("firstname-id").innerHTML = document.getElementById("firstname-passport").innerHTML;
+            document.getElementById("lastname-id").innerHTML = document.getElementById("lastname-passport").innerHTML;
+            
+        }
+        else if(rand<0.6){
+            let last = makeLastName()
+            document.getElementById("lastname-id").innerHTML = last;
+            sessionStorage.setItem("a",true);
+            document.getElementById("middlename-id").innerHTML = document.getElementById("middlename-passport").innerHTML;
+            document.getElementById("firstname-id").innerHTML = document.getElementById("firstname-passport").innerHTML;
+        }
+        else{
+            //image change will go here
+        }
+    }
+
+    if(isResident==false){
+        let rand = Math.random()
+        if(rand<0.2){
+            let first = makeFirstName()
+            document.getElementById("firstname-visa").innerHTML = first;
+            sessionStorage.setItem("a",true);
+        }
+        else if(rand<0.4){
+            let middle = makeMiddleName()
+            document.getElementById("middlename-visa").innerHTML = middle;
+            sessionStorage.setItem("a",true);
+        }
+        else if(rand<0.6){
+            let last = makeLastName()
+            document.getElementById("lastname-visa").innerHTML = last;
+            sessionStorage.setItem("a",true);
+        }
+        else{
+            //image change will go here
+        }
+    }
+}
+
+function cleanseFields() {
+    document.getElementById("firstname-passport").innerHTML = "";
+    document.getElementById("middlename-passport").innerHTML = "";
+    document.getElementById("lastname-passport").innerHTML = "";
+    document.getElementById("nationality-passport").innerHTML = "";
+    document.getElementById("residence-passport").innerHTML = "";
+    document.getElementById("number-passport").innerHTML = "";
+    document.getElementById("firstname-visa").innerHTML = "";
+    document.getElementById("middlename-visa").innerHTML = "";
+    document.getElementById("lastname-visa").innerHTML = "";
+    document.getElementById("nationality-visa").innerHTML = "";
+    document.getElementById("valid-visa").innerHTML = "";
+    document.getElementById("passportnumber-visa").innerHTML = "";
+    document.getElementById("firstname-id").innerHTML = "";
+    document.getElementById("middlename-id").innerHTML = "";
+    document.getElementById("lastname-id").innerHTML = "";
+    document.getElementById("expiry-id").innerHTML = ""
+    
+
 }
