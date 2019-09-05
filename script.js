@@ -62,6 +62,13 @@ function makeCountry() {
     return country[index];
 }
 
+function setPassportPhoto() {
+    let index = Math.floor(Math.random()*7) + 1
+    let filename = "assets/passport-photos/" + index + ".png";
+    document.getElementById("passportphoto").src = filename;
+    sessionStorage.setItem("imgcode", index);
+}
+
 function startGame() {
     cleanseFields()
     sessionStorage.setItem("a",false);
@@ -88,6 +95,7 @@ function startGame() {
     let country = makeCountry();
     document.getElementById("residence-passport").innerHTML = country;
 
+    setPassportPhoto();
 
     let resident = makeResidencyStatus();
 
@@ -96,11 +104,17 @@ function startGame() {
         if(Math.random()>0.5){
             makeMistake(true);
         }
+        else{
+            populateNoMistake(true);
+        }
     }
     else if (resident == false){
         document.getElementById("gamearea-bottom-right").style = "background-color:darkgrey;"
         if(Math.random()>0.5){
             makeMistake(false);
+        }
+        else{
+            populateNoMistake(false);
         }
     }
 }
@@ -114,6 +128,7 @@ function makeMistake(isResident){
             sessionStorage.setItem("a",true);
             document.getElementById("middlename-id").innerHTML = document.getElementById("middlename-passport").innerHTML;
             document.getElementById("lastname-id").innerHTML = document.getElementById("lastname-passport").innerHTML;
+            document.getElementById("idphoto").src = "assets/passport-photos/" + sessionStorage.getItem("imgcode") + ".png";
         }
         else if(rand<0.4){
             let middle = makeMiddleName()
@@ -121,6 +136,7 @@ function makeMistake(isResident){
             sessionStorage.setItem("a",true);
             document.getElementById("firstname-id").innerHTML = document.getElementById("firstname-passport").innerHTML;
             document.getElementById("lastname-id").innerHTML = document.getElementById("lastname-passport").innerHTML;
+            document.getElementById("idphoto").src = "assets/passport-photos/" + sessionStorage.getItem("imgcode") + ".png";
             
         }
         else if(rand<0.6){
@@ -129,9 +145,16 @@ function makeMistake(isResident){
             sessionStorage.setItem("a",true);
             document.getElementById("middlename-id").innerHTML = document.getElementById("middlename-passport").innerHTML;
             document.getElementById("firstname-id").innerHTML = document.getElementById("firstname-passport").innerHTML;
+            document.getElementById("idphoto").src = "assets/passport-photos/" + sessionStorage.getItem("imgcode") + ".png";
         }
         else{
-            //image change will go here
+            let index = sessionStorage.getItem("imgcode");
+            while(index == sessionStorage.getItem("imgcode")) {
+                index = Math.floor(Math.random()*7) + 1
+            }
+            let filename = "assets/passport-photos/" + index + ".png";
+            document.getElementById("idphoto").src = filename;
+            sessionStorage.setItem("a",true);
         }
     }
 
@@ -153,7 +176,13 @@ function makeMistake(isResident){
             sessionStorage.setItem("a",true);
         }
         else{
-            //image change will go here
+            let index = sessionStorage.getItem("imgcode");
+            while(index == sessionStorage.getItem("imgcode")) {
+                index = Math.floor(Math.random()*7) + 1
+            }
+            let filename = "assets/passport-photos/" + index + ".png";
+            document.getElementById("visaphoto").src = filename;
+            sessionStorage.setItem("a",true);
         }
     }
 }
@@ -175,6 +204,28 @@ function cleanseFields() {
     document.getElementById("middlename-id").innerHTML = "";
     document.getElementById("lastname-id").innerHTML = "";
     document.getElementById("expiry-id").innerHTML = ""
+
+    document.getElementById("visaphoto").src = "assets/blank-person.png";
+    document.getElementById("idphoto").src = "assets/blank-person.png";
+    document.getElementById("passportphoto").src = "assets/blank-person.png";
     
 
+}
+
+function populateNoMistake(isResident){
+    if(isResident===true){
+        document.getElementById("firstname-id").innerHTML = document.getElementById("firstname-passport").innerHTML;
+        document.getElementById("middlename-id").innerHTML = document.getElementById("middlename-passport").innerHTML;
+        document.getElementById("lastname-id").innerHTML = document.getElementById("lastname-passport").innerHTML;
+    }
+    else if(isResident===false){
+        document.getElementById("firstname-visa").innerHTML = document.getElementById("firstname-passport").innerHTML;
+        document.getElementById("middlename-visa").innerHTML = document.getElementById("middlename-passport").innerHTML;
+        document.getElementById("lastname-visa").innerHTML = document.getElementById("lastname-passport").innerHTML;
+    }
+    else{
+        console.log("Critical Error: function populateNoMistake was passed an incorrect parameter.");
+        startGame()
+        return;
+    }
 }
